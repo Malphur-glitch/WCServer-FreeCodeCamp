@@ -1,9 +1,18 @@
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const dns = require('dns');
+
 require('dotenv').config();
+
+// Use public DNS servers for MongoDB Atlas SRV lookups
+dns.setServers([
+  '8.8.8.8',
+  '1.1.1.1'
+]);
+
+dns.setDefaultResultOrder('ipv4first');
 
 const app = express();
 
